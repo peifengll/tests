@@ -1,4 +1,4 @@
-module github.com/peifengll/tests
+module github.com/peifengll/tests/v2
 
 go 1.20
 

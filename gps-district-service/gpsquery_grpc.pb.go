@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v4.23.3
-// source: gpsquery.proto
+// source: gps-district-service/gpsquery.proto
 
 package gps_district_service
 
@@ -146,5 +146,5 @@ var GPSDistrictService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "gpsquery.proto",
+	Metadata: "gps-district-service/gpsquery.proto",
 }
