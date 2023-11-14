@@ -1,0 +1,16 @@
+多层角色
+casbin还能为角色定义所属角色，从而实现多层角色关系，这种权限关系是可以传递的。例如dajun属于高级开发者senior，seinor属于开发者，那么dajun也属于开发者，拥有开发者的所有权限。我们可以定义开发者共有的权限，然后额外为senior定义一些特殊的权限。
+
+模型文件不用修改，策略文件改动如下：
+
+p, senior, data, write
+p, developer, data, read
+g, dajun, senior
+g, senior, developer
+g, lizi, developer
+上面policy.csv文件定义了高级开发者senior对数据data有write权限，普通开发者developer对数据只有read权限。同时senior也是developer，所以senior也继承其read权限。dajun属于senior，所以dajun对data有read和write权限，而lizi只属于developer，对数据data只有read权限。
+
+check(e, "dajun", "data", "read")
+check(e, "dajun", "data", "write")
+check(e, "lizi", "data", "read")
+check(e, "lizi", "data", "write")

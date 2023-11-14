@@ -1,0 +1,38 @@
+多个RBAC
+casbin支持同时存在多个RBAC系统，即用户和资源都有角色：
+
+[role_definition]
+g=_,_
+g2=_,_
+
+[matchers]
+m = g(r.sub, p.sub) && g2(r.obj, p.obj) && r.act == p.act
+上面的模型文件定义了两个RBAC系统g和g2，我们在匹配器中使用g(r.sub, p.sub)判断请求主体属于特定组，g2(r.obj, p.obj)判断请求资源属于特定组，且操作一致即可放行。
+
+策略文件:
+
+p, admin, prod, read
+p, admin, prod, write
+p, admin, dev, read
+p, admin, dev, write
+p, developer, dev, read
+p, developer, dev, write
+p, developer, prod, read
+g, dajun, admin
+g, lizi, developer
+g2, prod.data, prod
+g2, dev.data, dev
+先看角色关系，即最后 4 行，dajun属于admin角色，lizi属于developer角色，prod.data属于生产资源prod角色，dev.data属于开发资源dev角色。admin角色拥有对prod和dev类资源的读写权限，developer只能拥有对dev的读写权限和prod的读权限。
+
+check(e, "dajun", "prod.data", "read")
+check(e, "dajun", "prod.data", "write")
+check(e, "lizi", "dev.data", "read")
+check(e, "lizi", "dev.data", "write")
+check(e, "lizi", "prod.data", "write")
+第一个函数中e.Enforce()方法在实际执行的时候先获取dajun所属角色admin，再获取prod.data所属角色prod，根据文件中第一行p, admin, prod, read允许请求。最后一个函数中lizi属于角色developer，而prod.data属于角色prod，所有策略都不允许，故该请求被拒绝：
+
+dajun CAN read prod.data
+dajun CAN write prod.data
+lizi CAN read dev.data
+lizi CAN write dev.data
+lizi CANNOT write prod.data

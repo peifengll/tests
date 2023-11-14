@@ -1,0 +1,48 @@
+模型存储
+上面代码中，我们一直将模型存储在文件中。casbin也可以实现在代码中动态初始化模型，例如get-started的例子可以改写为：
+
+func main() {
+  m := model.NewModel()
+  m.AddDef("r", "r", "sub, obj, act")
+  m.AddDef("p", "p", "sub, obj, act")
+  m.AddDef("e", "e", "some(where (p.eft == allow))")
+  m.AddDef("m", "m", "r.sub == g.sub && r.obj == p.obj && r.act == p.act")
+
+  a := fileadapter.NewAdapter("./policy.csv")
+  e, err := casbin.NewEnforcer(m, a)
+  if err != nil {
+    log.Fatalf("NewEnforecer failed:%v\n", err)
+  }
+
+  check(e, "dajun", "data1", "read")
+  check(e, "lizi", "data2", "write")
+  check(e, "dajun", "data1", "write")
+  check(e, "dajun", "data2", "read")
+}
+同样地，我们也可以从字符串中加载模型：
+
+func main() {
+  text := `
+  [request_definition]
+  r = sub, obj, act
+
+  [policy_definition]
+  p = sub, obj, act
+
+  [policy_effect]
+  e = some(where (p.eft == allow))
+
+  [matchers]
+  m = r.sub == p.sub && r.obj == p.obj && r.act == p.act
+  `
+
+  m, _ := model.NewModelFromString(text)
+  a := fileadapter.NewAdapter("./policy.csv")
+  e, _ := casbin.NewEnforcer(m, a)
+
+  check(e, "dajun", "data1", "read")
+  check(e, "lizi", "data2", "write")
+  check(e, "dajun", "data1", "write")
+  check(e, "dajun", "data2", "read")
+}
+但是这两种方式并不推荐。

@@ -1,0 +1,63 @@
+ABAC
+RBAC模型对于实现比较规则的、相对静态的权限管理非常有用。但是对于特殊的、动态的需求，RBAC就显得有点力不从心了。例如，我们在不同的时间段对数据data实现不同的权限控制。正常工作时间9:00-18:00所有人都可以读写data，其他时间只有数据所有者能读写。这种需求我们可以很方便地使用ABAC（attribute base access list）模型完成：
+
+[request_definition]
+r = sub, obj, act
+
+[policy_definition]
+p = sub, obj, act
+
+[matchers]
+m = r.sub.Hour >= 9 && r.sub.Hour < 18 || r.sub.Name == r.obj.Owner
+
+[policy_effect]
+e = some(where (p.eft == allow))
+该规则不需要策略文件：
+
+type Object struct {
+  Name  string
+  Owner string
+}
+
+type Subject struct {
+  Name string
+  Hour int
+}
+
+func check(e *casbin.Enforcer, sub Subject, obj Object, act string) {
+  ok, _ := e.Enforce(sub, obj, act)
+  if ok {
+    fmt.Printf("%s CAN %s %s at %d:00\n", sub.Name, act, obj.Name, sub.Hour)
+  } else {
+    fmt.Printf("%s CANNOT %s %s at %d:00\n", sub.Name, act, obj.Name, sub.Hour)
+  }
+}
+
+func main() {
+  e, err := casbin.NewEnforcer("./model.conf", "./policy.csv")
+  if err != nil {
+    log.Fatalf("NewEnforecer failed:%v\n", err)
+  }
+
+  o := Object{"data", "dajun"}
+  s1 := Subject{"dajun", 10}
+  check(e, s1, o, "read")
+
+  s2 := Subject{"lizi", 10}
+  check(e, s2, o, "read")
+
+  s3 := Subject{"dajun", 20}
+  check(e, s3, o, "read")
+
+  s4 := Subject{"lizi", 20}
+  check(e, s4, o, "read")
+}
+显然lizi在20:00不能read数据data：
+
+dajun CAN read data at 10:00
+lizi CAN read data at 10:00
+dajun CAN read data at 20:00
+lizi CANNOT read data at 20:00
+我们知道，在model.conf文件中可以通过r.sub和r.obj，r.act来访问传给Enforce方法的参数。实际上sub/obj可以是结构体对象，得益于govaluate库的强大功能，我们可以在model.conf文件中获取这些结构体的字段值。如上面的r.sub.Name、r.Obj.Owner等。govaluate库的内容可以参见我之前的一篇文章《Go 每日一库之 govaluate》。
+
+使用ABAC模型可以非常灵活的权限控制，但是一般情况下RBAC就已经够用了。
