@@ -1,0 +1,7 @@
+p, admin, data, read,allow
+p, admin, data, write,allow
+p, developer, data, read,allow
+p,lizi,data,read,deny
+g, dajun, admin
+g, lizi, developer
+

@@ -1,0 +1,8 @@
+appname = "casbin-demo"
+[mysql]
+host = "127.0.0.1"
+password = "peifeng"
+port =3306
+tableprefix = ""
+user = "root"
+dbname = "casbin"
