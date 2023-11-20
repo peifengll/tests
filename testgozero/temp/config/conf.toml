@@ -1,0 +1,22 @@
+appname = "casbin-demo"
+[mysql]
+host = "127.0.0.1"
+password = "peifeng"
+port =3306
+tableprefix = ""
+user = "root"
+dbname = "test_1"
+
+
+# 核心配置
+[Redis]
+Host= "127.0.0.1:6379"
+Type= "node"
+Pass= "123456"
+Key= "rpc-ucenter"
+
+
+[CacheRedis]
+Host= "127.0.0.1:6379"
+Type= "node"
+Pass= "123456"
