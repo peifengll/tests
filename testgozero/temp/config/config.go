@@ -3,13 +3,16 @@ package config
 import (
 	"fmt"
 	"github.com/spf13/viper"
+	"github.com/zeromicro/go-zero/core/stores/cache"
 )
 
 type TomConfig struct {
-	AppName    string
-	Mysql      MySQLConfig
-	Redis      RedisConfig
-	CacheRedis CacheRedisConfig
+	AppName string
+	Mysql   MySQLConfig
+	Redis   RedisConfig
+	//Cache   cache.CacheConf
+	//Cache redis.RedisConf
+	Cache cache.CacheConf
 }
 
 type MySQLConfig struct {
@@ -46,6 +49,7 @@ func InitConfig() error {
 	viper.SetConfigName("conf")
 	viper.SetConfigType("toml")
 	viper.AddConfigPath("D:\\code\\go\\trys\\tests\\testgozero\\temp\\config")
+	viper.AddConfigPath("D:\\work\\code\\tests\\testgozero\\temp\\config")
 	err := viper.ReadInConfig()
 	if nil != err {
 		return err
