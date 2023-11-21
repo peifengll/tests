@@ -18,7 +18,7 @@ func main() {
 	fmt.Println(c)
 	fmt.Printf("%+v", c.Cache)
 	ctx := context.Background()
-	one, err := svc.SqlcScoreModel.FindOne(ctx, 0)
+	one, err := svc.SqlcScoreModel.FindOne(ctx, 2)
 	if err != nil {
 		return
 	}
