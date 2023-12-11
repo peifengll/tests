@@ -18,6 +18,7 @@ func InitCasbin() {
 	//modelPath := dir + "/config/rbac_model.conf"
 	modelpath := "D:\\code\\go\\trys\\tests\\testgasbin\\self_demo\\config\\rbac_model.conf"
 	Enforcer, err = casbin.NewEnforcer(modelpath, a)
+
 	if err != nil {
 		log.Fatalf("SetupCasbinEnforcer err: %v", err)
 		return

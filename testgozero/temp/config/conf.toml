@@ -15,19 +15,19 @@ Type = "node"
 Pass = "123456"
 Key = "rpc-ucenter"
 
+[[Cache]]
+Weight=60
+[Cache.RedisConf]
+Host = "47.109.99.205:6379"
+Type = "node2"
+Pass = "ningzaichun"
 
 
 [[Cache]]
 # 这个weight目前不知道是什么东西，但是如果填成所有节点weight的和为0的话，会报错，说no cache nodes
-Weight = 100
+Weight = 40
 [Cache.RedisConf]
 Host = "127.0.0.1:6379"
 # 这个type，代表是单节点，还有一个好像代表集群
-Type = "node"
+Type = "node1"
 Pass = "123456"
-#[[Cache]]
-#Weight=""
-#[Cache.RedisConf]
-#Host = "127.0.0.1:6379"
-#Type = "node"
-#Pass = "123456"
