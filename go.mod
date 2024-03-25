@@ -8,7 +8,9 @@ require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/google/martian v2.1.0+incompatible
 	github.com/google/uuid v1.4.0
+	github.com/gorilla/websocket v1.5.1
 	github.com/prometheus/client_golang v1.17.0
+	github.com/redis/go-redis/v9 v9.5.1
 	github.com/spf13/viper v1.17.0
 	github.com/urfave/cli/v2 v2.27.1
 	github.com/zeromicro/go-zero v1.6.0
@@ -45,7 +47,6 @@ require (
 	github.com/golang-sql/civil v0.0.0-20220223132316-b832511892a9 // indirect
 	github.com/golang-sql/sqlexp v0.1.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
-	github.com/gorilla/websocket v1.5.1 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
