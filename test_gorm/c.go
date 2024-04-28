@@ -1,7 +1,4 @@
-package test_gorm
-
-
-package data_obj
+package main
 
 /*
  * @Author: SimingLiu siming.liu@linketech.cn
@@ -167,7 +164,7 @@ type AreaCode struct {
 	Pn       *string  `db:"pn" gorm:"Column:pn"`
 	Cn       *string  `db:"cn" gorm:"Column:cn"`
 	Dn       *string  `db:"dn" gorm:"Column:dn"`
-	Name     *string  `db:"name" gorm:"Column:name"`
+	Name     *string  `db:"Txtest" gorm:"Column:Txtest"`
 	FullName *string  `db:"full_name" gorm:"Column:full_name"`
 	MinLat   *float64 `db:"min_lat" gorm:"Column:min_lat"`
 	MaxLat   *float64 `db:"max_lat" gorm:"Column:max_lat"`
@@ -229,7 +226,7 @@ type Batch struct {
 	ID        int32   `db:"id" gorm:"Column:id"`
 	Bid       string  `db:"bid" gorm:"Column:bid"`
 	Iid       string  `db:"iid" gorm:"Column:iid"`
-	Name      string  `db:"name" gorm:"Column:name"`
+	Name      string  `db:"Txtest" gorm:"Column:Txtest"`
 	Timestamp int64   `db:"timestamp" gorm:"Column:timestamp"`
 	Backup    *string `db:"backup" gorm:"Column:backup"`
 	BatchNo   string  `db:"batch_no" gorm:"Column:batch_no"`
@@ -379,7 +376,7 @@ func (Card) TableName() string {
 type Corp struct {
 	ID                        int32   `db:"id" gorm:"Column:id"`
 	Cid                       string  `db:"cid" gorm:"Column:cid"`
-	Name                      string  `db:"name" gorm:"Column:name"`
+	Name                      string  `db:"Txtest" gorm:"Column:Txtest"`
 	Mobile                    string  `db:"mobile" gorm:"Column:mobile"`
 	AlertMobile               string  `db:"alert_mobile" gorm:"Column:alert_mobile"`
 	Linkman                   string  `db:"linkman" gorm:"Column:linkman"`
@@ -492,7 +489,7 @@ func (DeviceMonthlyCounter) TableName() string {
 }
 
 type District struct {
-	Name     *string `db:"name" gorm:"Column:name"`
+	Name     *string `db:"Txtest" gorm:"Column:Txtest"`
 	Adcode   string  `db:"adcode" gorm:"Column:adcode"`
 	CityCode *string `db:"city_code" gorm:"Column:city_code"`
 }
@@ -528,7 +525,7 @@ type Event struct {
 	Clatitude  *int64  `db:"clatitude" gorm:"Column:clatitude"`
 	Clongitude *int64  `db:"clongitude" gorm:"Column:clongitude"`
 	RxLev      int32   `db:"rxlev" gorm:"Column:rxlev"`
-	Name       string  `db:"name" gorm:"Column:name"`
+	Name       string  `db:"Txtest" gorm:"Column:Txtest"`
 	Speed      *int32  `db:"speed" gorm:"Column:speed"`
 	EscapeTime uint64  `db:"escape_time" gorm:"Column:escape_time"`
 }
@@ -558,7 +555,7 @@ func (Feedback) TableName() string {
 
 type Fence struct {
 	ID         uint32  `db:"id" gorm:"Column:id"`
-	Name       *string `db:"name" gorm:"Column:name"`
+	Name       *string `db:"Txtest" gorm:"Column:Txtest"`
 	Shape      *int8   `db:"shape" gorm:"Column:shape"`
 	ShapeInfo  string  `db:"shape_info" gorm:"Column:shape_info"`
 	EnterAlarm int8    `db:"enter_alarm" gorm:"Column:enter_alarm"`
@@ -626,7 +623,7 @@ type Group struct {
 	Gid        string `db:"gid" gorm:"Column:gid"`
 	Cid        string `db:"cid" gorm:"Column:cid"`
 	Pgid       string `db:"pgid" gorm:"Column:pgid"`
-	Name       string `db:"name" gorm:"Column:name"`
+	Name       string `db:"Txtest" gorm:"Column:Txtest"`
 	Type       int8   `db:"type" gorm:"Column:type"`
 	CreateTime int64  `db:"create_time" gorm:"Column:create_time"`
 	Level      int32  `db:"level" gorm:"Column:level"`
@@ -670,7 +667,7 @@ func (GroupPath) TableName() string {
 
 type HelpDetail struct {
 	ID          string  `db:"id" gorm:"Column:id"`
-	Name        string  `db:"name" gorm:"Column:name"`
+	Name        string  `db:"Txtest" gorm:"Column:Txtest"`
 	Sequence    uint8   `db:"sequence" gorm:"Column:sequence"`
 	Status      uint8   `db:"status" gorm:"Column:status"`
 	Description *string `db:"description" gorm:"Column:description"`
@@ -685,7 +682,7 @@ func (HelpDetail) TableName() string {
 
 type HelpMenu struct {
 	ID          string  `db:"id" gorm:"Column:id"`
-	Name        string  `db:"name" gorm:"Column:name"`
+	Name        string  `db:"Txtest" gorm:"Column:Txtest"`
 	Sequence    uint8   `db:"sequence" gorm:"Column:sequence"`
 	Status      uint8   `db:"status" gorm:"Column:status"`
 	Description *string `db:"description" gorm:"Column:description"`
@@ -885,7 +882,7 @@ func (Lua) TableName() string {
 type Maintainer struct {
 	ID     uint32 `db:"id" gorm:"Column:id"`
 	Mid    string `db:"mid" gorm:"Column:mid"`
-	Name   string `db:"name" gorm:"Column:name"`
+	Name   string `db:"Txtest" gorm:"Column:Txtest"`
 	Mobile string `db:"mobile" gorm:"Column:mobile"`
 	Email  string `db:"email" gorm:"Column:email"`
 	Remark string `db:"remark" gorm:"Column:remark"`
@@ -941,7 +938,7 @@ type Operator struct {
 	Cid        *string `db:"cid" gorm:"Column:cid"`
 	Mobile     string  `db:"mobile" gorm:"Column:mobile"`
 	Password   string  `db:"password" gorm:"Column:password"`
-	Name       *string `db:"name" gorm:"Column:name"`
+	Name       *string `db:"Txtest" gorm:"Column:Txtest"`
 	Email      *string `db:"email" gorm:"Column:email"`
 	Address    *string `db:"address" gorm:"Column:address"`
 	CreateTime *int64  `db:"create_time" gorm:"Column:create_time"`
@@ -1060,7 +1057,7 @@ func (RedoThirdpartyData) TableName() string {
 // Region 电子围栏
 type Region struct {
 	ID        int32   `db:"id" gorm:"Column:id"`
-	Name      *string `db:"name" gorm:"Column:name"`
+	Name      *string `db:"Txtest" gorm:"Column:Txtest"`
 	Longitude *int64  `db:"longitude" gorm:"Column:longitude"`
 	Latitude  *int64  `db:"latitude" gorm:"Column:latitude"`
 	Radius    *int32  `db:"radius" gorm:"Column:radius"`
@@ -1142,7 +1139,7 @@ func (SConfigToOnline) TableName() string {
 // Salesman 销售人员表
 type Salesman struct {
 	ID     uint32  `db:"id" gorm:"Column:id"`
-	Name   string  `db:"name" gorm:"Column:name"`
+	Name   string  `db:"Txtest" gorm:"Column:Txtest"`
 	Email  string  `db:"email" gorm:"Column:email"`
 	Mobile *string `db:"mobile" gorm:"Column:mobile"`
 	Remark *string `db:"remark" gorm:"Column:remark"`
@@ -1275,7 +1272,7 @@ type TerminalEventHistory struct {
 	Sn              string  `db:"sn" gorm:"Column:sn"`
 	CreateAt        int64   `db:"create_at" gorm:"Column:create_at"`
 	EventType       int16   `db:"event_type" gorm:"Column:event_type"`
-	Name            string  `db:"name" gorm:"Column:name"`
+	Name            string  `db:"Txtest" gorm:"Column:Txtest"`
 	Remark          string  `db:"remark" gorm:"Column:remark"`
 	LocateErrorInfo *string `db:"locate_error_info" gorm:"Column:locate_error_info"`
 }
@@ -1448,7 +1445,7 @@ func (TerminalPairlog) TableName() string {
 type UserFootPrint struct {
 	Cid       *string `db:"cid" gorm:"Column:cid"`
 	Mobile    *string `db:"mobile" gorm:"Column:mobile"`
-	Name      *string `db:"name" gorm:"Column:name"`
+	Name      *string `db:"Txtest" gorm:"Column:Txtest"`
 	Time      *int32  `db:"time" gorm:"Column:time"`
 	Vin       *string `db:"vin" gorm:"Column:vin"`
 	OptType   *string `db:"opt_type" gorm:"Column:opt_type"`
@@ -1465,7 +1462,7 @@ func (UserFootPrint) TableName() string {
 type Warehouse struct {
 	ID         string `db:"id" gorm:"Column:id"`
 	CorpID     string `db:"corp_id" gorm:"Column:corp_id"`
-	Name       string `db:"name" gorm:"Column:name"`
+	Name       string `db:"Txtest" gorm:"Column:Txtest"`
 	CreateTime int64  `db:"create_time" gorm:"Column:create_time"`
 	UpdateTime *int64 `db:"update_time" gorm:"Column:update_time"`
 }
@@ -1555,4 +1552,3 @@ type WechatUsers struct {
 func (WechatUsers) TableName() string {
 	return "wechat_users"
 }
-

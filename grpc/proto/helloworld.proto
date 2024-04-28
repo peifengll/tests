@@ -1,0 +1,25 @@
+// 标识此文件使用的语法版本是protobuf3
+syntax = "proto3";
+
+//生成go代码相关的option，此option是必要的，不然编译会出错
+option go_package = "../;helloworld";
+
+
+// 定义Greeter服务，包含1个rpc接口Sayhello
+// Sayhello接口包含传入的message类型名HelloRequest和返回的message类型名HelloReply
+service Greeter {
+  // 打招呼
+  rpc SayHello (HelloRequest) returns (HelloReply);
+}
+
+
+// 使用message关键字定义需要用到的消息类型
+// 用于发起请求的消息中包含一个名为name的string字段
+message HelloRequest {
+  string name = 1;
+}
+
+// 响应的消息中定义一个名为message的string字段
+message HelloReply {
+  string message = 1;
+}

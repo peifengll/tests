@@ -32,3 +32,17 @@ func TestHMGet(t *testing.T) {
 	}
 	fmt.Println(result)
 }
+
+func TestMget(t *testing.T) {
+	r := NewRedis()
+	ctx := context.Background()
+	r.Set(ctx, "666", "600", 0)
+	r.Set(ctx, "766", "700", 0)
+	r.Set(ctx, "866", "800", 0)
+	val := []string{"666", "766", "866"}
+	result, err := r.MGet(ctx, val...).Result()
+	if err != nil {
+		log.Fatalln("报错：", err)
+	}
+	fmt.Println(result)
+}
